@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Mostrar Contratos</title>
+</head>
+<body>
+
+ <H1> Contratos disponibles:</H1>
+
+    <table border="1">
+    	<tr>
+    		<th>Id</th><th>Nombre</th>
+    	</tr>
+    	<th:block th:each="c : ${contratos} ">
+    		<tr>
+    			<td th:text="${c.idContrato}"></td>
+    			<td><a th:href="${contextPath} + '/DetallesContrato.do?id=' + ${c.idContrato}" th:text=${c.nombre}></a></td>
+    		</tr>
+    	</th:block>
+    </table>
+    
+    <hr></hr>
+
+	<form id="alta_contratos" th:action="${contextPath} + '/AltaContrato.do'" method="get">
+    	<h2>Alta de contratos</h2>
+    	ID: <input type="text" name="id" size="10"/>
+    	Nombre: <input type="text" name="nombre" size="50"/>
+    	<input type="submit" value="enviar">		    	
+    </form>    
+
+</body>
+</html>
