@@ -6,6 +6,5 @@ mvn clean package
 ```
 ## Deploy
 ```sh
-cp target/DemoContratos /d/docker_playground/
-docker cp /d/docker_playground/DemoContratos.war transferweb01:/usr/local/tomcat/webapps
+docker cp target/DemoContratos.war transferweb01:/usr/local/tomcat/webapps
 ```
