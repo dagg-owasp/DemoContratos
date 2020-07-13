@@ -1,2 +1,2 @@
 # DemoContratos
-Java Dummy Project
+Java Spring Project to demo security related features
