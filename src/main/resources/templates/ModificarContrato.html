@@ -1,11 +1,13 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Modificar contrato</title>
+    <title th:if="${modificado}">Modificar contrato</title>
+    <title th:unless="${modificado}">Agregar contrato</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <h1 th:text="'Se modifico exitosamente el contrato # ' + ${nombre}"></h1>
-    <a th:href="${contextPath}"> Regresar al Inicio </a>
+    <h1 th:if="${modificado}" th:text="'Se modifico exitosamente el contrato # ' + ${nombre}"></h1>
+    <h1 th:unless="${modificado}" th:text="'Se agrego exitosamente el contrato # ' + ${nombre}"></h1>
+    <a th:href="@{/}"> Regresar al Inicio </a>
 </body>
 </html>

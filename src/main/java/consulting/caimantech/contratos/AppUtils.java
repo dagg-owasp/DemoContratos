@@ -9,7 +9,7 @@ public class AppUtils {
     private static final char[] IMMUNE_SLF4J_HTML = {',', '.', '-', '_', ' ', ':','\\', '{', '}' };
     private static CodecLogScrubber codecLogScrubber = new CodecLogScrubber(new HTMLEntityCodec(), IMMUNE_SLF4J_HTML);
 
-	public static String cleanMessage(String message, Throwable throwable) {
+	public static String cleanMessage(String message, Throwable throwable)  {
 
 		// ensure there's something to log
 		if (message == null) {
@@ -26,7 +26,7 @@ public class AppUtils {
 			clean += " (Encoded)";
 		}
 		
-		if (throwable != null) {
+		if (throwable != null) {			
 			String fqn = throwable.getClass().getCanonicalName();
 			int index = fqn.lastIndexOf('.');
 			if (index > 0) {
@@ -34,10 +34,15 @@ public class AppUtils {
 			}
 			StackTraceElement ste = throwable.getStackTrace()[0];
 			clean += "\n    " + fqn + " @ " + ste.getClassName() + "." + ste.getMethodName() + "(" + ste.getFileName()
-					+ ":" + ste.getLineNumber() + ")";
+					+ ":" + ste.getLineNumber() + ")";			
 		}
 		
 		return clean;
 	}		
+	
+	public static void propagarExcepcion(String message) throws Exception{
+		throw new Exception(cleanMessage(message, null));
+	}
+	
 	
 }
