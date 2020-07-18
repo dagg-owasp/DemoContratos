@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<script src="webjars/jquery/3.5.0/jquery.min.js"></script>
 <title>Mostrar Contratos</title>
 </head>
 <body>
@@ -27,18 +28,20 @@
     	<table>
     		<tr>
     			<td>Id:</td>
-    			<td><input type="text" th:field="*{id}"/></td>
+    			<td><input type="text" class="numeric" size="3" maxlength="3" th:field="*{id}"/></td>
     			<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Id Error</td>
    			<tr>
     			<td>Nombre:</td>
-    			<td><input type="text" th:field="*{nombre}"/></td>
+    			<td><input type="text" class="alpha_numeric_plus" size="50" maxlength="50" th:field="*{nombre}"/></td>
     			<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre Error</td>
    			</tr>
 			<tr>    	   		
-    	        <td><button type="submit">Enviar</button></td>
+    	        <td><button id="EnviarModificacionContrato" type="submit">Enviar</button></td>
 			</tr>    	
     	</table>
     </form>    
+
+	<script type="text/javascript" th:src="@{/js/ValidaModificacionContratos.js}"></script>
 
 </body>
 </html>

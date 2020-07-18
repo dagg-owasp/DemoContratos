@@ -1,7 +1,7 @@
 package consulting.caimantech.contratos.controllers;
 
 import consulting.caimantech.contratos.AppUtils;
-import consulting.caimantech.contratos.forms.BeanDetallesContrato;
+import consulting.caimantech.contratos.forms.BuscarDetallesContratoForm;
 import consulting.caimantech.contratos.forms.AltaContratoForm;
 import consulting.caimantech.contratos.model.Contrato;
 import consulting.caimantech.contratos.repo.IContratoRepo;
@@ -38,7 +38,7 @@ public class ContratosController implements WebMvcConfigurer {
 	}	
 	
 	@GetMapping("/DetallesContrato.do")
-	public String DetallesContrato(@Valid BeanDetallesContrato filter, BindingResult result, Model model) {
+	public String DetallesContrato(@Valid BuscarDetallesContratoForm filter, BindingResult result, Model model) {
 		
 		String NombreContrato = "No Existe";
 		
@@ -50,14 +50,14 @@ public class ContratosController implements WebMvcConfigurer {
 			
 				if (repo.existsById(filter.getId())) {
 					NombreContrato = repo.getOne(filter.getId()).getNombre();
-					logger.info("Cargando detalles del contrato: [{}]  (Encoded)",  Encode.forJava(NombreContrato));
+					logger.info("Cargando detalles del contrato: [{}]  (Encoded)",  Encode.forJava(filter.toString()));
 				} else {
-					logger.info("No existe un contrato con el id [{}]  (Encoded)",  Encode.forJava(String.valueOf(filter.getId())));
+					logger.info("No existe un contrato con el id [{}]  (Encoded)",  Encode.forJava(filter.getId().toString()));
 				}
 			
 			
 		} catch  (Exception ex) {
-			logger.error("No se encontro el contrato, Stack Trace {}", AppUtils.cleanMessage(filter.toString(), null), ex);
+			logger.error("No se encontro el contrato: [{}] StackTrace:", AppUtils.cleanMessage(filter.toString(), null), ex);
 		}
 		
 		model.addAttribute("nombre", NombreContrato);
@@ -72,7 +72,6 @@ public class ContratosController implements WebMvcConfigurer {
 			
 			if (bindingResult.hasErrors()) {
 				AppUtils.propagarExcepcion(bindingResult.getFieldError().getDefaultMessage());
-				
 			}
 			
 			else {
@@ -87,11 +86,18 @@ public class ContratosController implements WebMvcConfigurer {
 				c.setNombre(altaContratoForm.getNombre());
 				repo.save(c);
 				
+				if (existente) {
+					logger.info("Se modifico el contrato: [{}]  (Encoded)",  Encode.forJava(altaContratoForm.toString()));
+				} else {
+					logger.info("Se creo un nuevo contrato: [{}]  (Encoded)",  Encode.forJava(altaContratoForm.toString()));
+				}
+				
 				model.addAttribute("nombre", altaContratoForm.getNombre());
 				model.addAttribute("modificado", existente);
 			}
 		} catch (Exception ex) {
-			logger.error("No se encontro el contrato, Stack Trace {}", AppUtils.cleanMessage(altaContratoForm.toString(), null), ex);
+			logger.error("No se pudo modificar el contrato: [{}]  StackTrace:", AppUtils.cleanMessage(altaContratoForm.toString(), null), ex);
+			model.addAttribute("contratos", repo.findAll(Sort.by(Sort.Direction.ASC, "idContrato")));
 			return "MuestraContratos";
 		}
 		

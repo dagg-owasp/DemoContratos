@@ -5,7 +5,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Max;
 
 
-public class BeanDetallesContrato {
+public class BuscarDetallesContratoForm {
 	
 	@NotNull(message="El id del contrato es mandatorio")
 	@Min(value=1, message="El id del contrato debe ser mayor o igual a 1")
@@ -18,6 +18,11 @@ public class BeanDetallesContrato {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "BuscarDetallesContratoForm [id=" + id + "]";
 	}
 
 

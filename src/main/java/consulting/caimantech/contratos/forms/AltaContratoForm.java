@@ -10,13 +10,13 @@ public class AltaContratoForm {
 	
 	@NotNull(message="El id del contrato es mandatorio")
 	@NotEmpty(message="El id del contrato es mandatorio")
-	@Pattern(regexp="^[1-9][0-9]?$|^100$", message="El Id del contrato debe ser un numero entre el 1 y el 100")
+	@Pattern(regexp="^[1-9][0-9]?$|^100$", message="El id del contrato debe ser un numero entre el 1 y el 100")
 	private String id;
 	
-	@NotNull(message="El Nombre del contrato es mandatorio")
-	@NotEmpty(message="El Nombre del contrato es mandatorio")
-	@Size(min=5, max=50, message="La longitud del contrato debe ser minimo de 5 y maximo de 50")
-	@Pattern(regexp="^[a-zA-Z0-9ÁÉÍÓÚÑáéíóúñ\\s\\&\\.\\,\\#]+$", message="El Nombre del contrato debe ser alfanumerico")
+	@NotNull(message="El nombre del contrato es mandatorio")
+	@NotEmpty(message="El nombre del contrato es mandatorio")
+	@Size(min=5, max=50, message="La longitud del nombre contrato debe ser minimo de 5 y maximo de 50")
+	@Pattern(regexp="^[a-zA-Z0-9ÁÉÍÓÚÑáéíóúñ\\s\\&\\.\\,\\#]+$", message="El nombre del contrato debe ser alfanumerico")
 	private String nombre;
 
 	public String getId() {
@@ -37,7 +37,7 @@ public class AltaContratoForm {
 
 	@Override
 	public String toString() {
-		return "BeanModificacionContrato [id=" + id + ", nombre=" + nombre + "]";
+		return "AltaContratoForm [id=" + id + ", nombre=" + nombre + "]";
 	}
 	
 }
