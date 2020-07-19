@@ -1,47 +1,57 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<script src="webjars/jquery/3.5.0/jquery.min.js"></script>
-<title>Mostrar Contratos</title>
-</head>
-<body>
-
- <H1> Contratos disponibles:</H1>
-
-    <table border="1">
-    	<tr>
-    		<th>Id</th><th>Nombre</th>
-    	</tr>
-    	<th:block th:each="c : ${contratos} ">
-    		<tr>
-    			<td th:text="${c.idContrato}"></td>
-    			<td><a th:href="@{/DetallesContrato.do?id=} + ${c.idContrato}" th:text=${c.nombre}></a></td>
-    		</tr>
-    	</th:block>
-    </table>
-    
-    <hr></hr>
-
-	<form th:action="@{/AltaContrato.do}" th:object="${altaContratoForm}" method="post">
-    	<h2>Modificar Contratos</h2>
-    	<table>
-    		<tr>
-    			<td>Id:</td>
-    			<td><input type="text" class="numeric" size="3" maxlength="3" th:field="*{id}"/></td>
-    			<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Id Error</td>
-   			<tr>
-    			<td>Nombre:</td>
-    			<td><input type="text" class="alpha_numeric_plus" size="50" maxlength="50" th:field="*{nombre}"/></td>
-    			<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre Error</td>
-   			</tr>
-			<tr>    	   		
-    	        <td><button id="EnviarModificacionContrato" type="submit">Enviar</button></td>
-			</tr>    	
-    	</table>
-    </form>    
-
-	<script type="text/javascript" th:src="@{/js/ValidaModificacionContratos.js}"></script>
-
-</body>
+	
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<script src="webjars/jquery/3.5.0/jquery.min.js"></script>
+		<title>Mostrar Contratos</title>
+	</head>
+	
+	<body>
+	
+		<div style="position:absolute; right:40px" sec:authorize="isAuthenticated()">
+	      Bienvenido <span sec:authentication="name"></span>
+	      <a th:href="@{/logout}">Salir</a>
+	    </div>
+	
+	 	<H1> Contratos disponibles:</H1>
+	
+	    <table border="1">
+	    	<tr>
+	    		<th>Id</th><th>Nombre</th>
+	    	</tr>
+	    	<th:block th:each="c : ${contratos} ">
+	    		<tr>
+	    			<td th:text="${c.idContrato}"></td>
+	    			<td><a th:href="@{/DetallesContrato.do?id=} + ${c.idContrato}" th:text=${c.nombre}></a></td>
+	    		</tr>
+	    	</th:block>
+	    </table>
+	
+		<div sec:authorize="hasRole('ROLE_ADMIN')">     
+		    <hr></hr>
+		
+			<form th:action="@{/AltaContrato.do}" th:object="${altaContratoForm}" method="post">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+		    	<h2>Modificar Contratos</h2>
+		    	<table>
+		    		<tr>
+		    			<td>Id:</td>
+		    			<td><input type="text" class="numeric" size="3" maxlength="3" th:field="*{id}"/></td>
+		    			<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Id Error</td>
+		   			<tr>
+		    			<td>Nombre:</td>
+		    			<td><input type="text" class="alpha_numeric_plus" size="50" maxlength="50" th:field="*{nombre}"/></td>
+		    			<td th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre Error</td>
+		   			</tr>
+					<tr>    	   		
+		    	        <td><button id="EnviarModificacionContrato" type="submit">Enviar</button></td>
+					</tr>    	
+		    	</table>
+		    </form>    
+			
+			<script type="text/javascript" th:src="@{/js/ValidaModificacionContratos.js}"></script>
+		
+		</div>
+	</body>
 </html>

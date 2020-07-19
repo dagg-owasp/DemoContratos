@@ -8,7 +8,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class DemoContratosApplication extends SpringBootServletInitializer {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {	
 		System.setProperty("server.servlet.context-path", "/DemoContratos");
 		SpringApplication.run(DemoContratosApplication.class, args);
 	}
