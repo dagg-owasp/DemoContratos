@@ -10,5 +10,7 @@ docker run -itd --name=transferweb01 -p 9898:8080 --network=caimantech tomcat:jd
 docker cp initdb.sql transferdb01:/opt
 timeout /t 3 /nobreak > nul
 docker exec -u postgres transferdb01 psql postgres postgres -f /opt/initdb.sql
+:: compile java application
+mvn clean package
 :: deploy the war file
 docker cp target/DemoContratos.war transferweb01:/usr/local/tomcat/webapps
