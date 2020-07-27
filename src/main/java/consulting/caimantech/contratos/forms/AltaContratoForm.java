@@ -41,7 +41,4 @@ public class AltaContratoForm {
 	}
 	
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 5da65fc2afc4d067e176692e7d5d87cc8c428187
