@@ -4,3 +4,27 @@ docker run -p 80:80 \
     -e 'PGADMIN_DEFAULT_EMAIL=user@domain.com' \
     -e 'PGADMIN_DEFAULT_PASSWORD=SuperSecret' \
     -d dpage/pgadmin4
+
+Construir imagen
+docker build -t nombre:version .
+
+borrar imagen
+docker rmi 
+
+borrar contenedor
+docker rm
+
+listar imagenes
+docker images
+
+listar contenedores activos
+docker ps
+
+listar todos los contenedores activos+detenidos
+docker ps -a
+
+correr un contenedor
+docker run 
+
+entrar o ejecutar un comando en un contenedor activo
+docker exec -it 6f1ea37b99e9
