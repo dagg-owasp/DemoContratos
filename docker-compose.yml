@@ -1,0 +1,27 @@
+version: '3'
+services:
+    transferdb01:
+        image: "democontratosdb"
+        ports:
+            - "5432:5432"
+        networks:
+            - caimantech
+    admin:
+        image: "dpage/pgadmin4"
+        ports:
+            - "5000:80"
+        environment:
+            PGADMIN_DEFAULT_EMAIL: user@domain.com
+            PGADMIN_DEFAULT_PASSWORD: SuperSecret
+        networks:
+            - caimantech
+    tomcat:
+        image: "tomcat:jdk8"
+        ports:
+            - "9898:8080"
+        volumes:
+            - ./todeploy/DemoContratos.war:/usr/local/tomcat/webapps/DemoContratos.war
+        networks:
+            - caimantech
+networks:
+    caimantech:
