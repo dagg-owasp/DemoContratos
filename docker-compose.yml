@@ -19,6 +19,8 @@ services:
         image: "tomcat:jdk11"
         ports:
             - "9898:8080"
+        environment:
+            JASYPT_ENCRYPTOR_PASSWORD: V*GWw*7>.Y{f6^ja
         volumes:
             - ./todeploy/DemoContratos.war:/usr/local/tomcat/webapps/DemoContratos.war
         networks:

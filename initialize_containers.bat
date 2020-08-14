@@ -5,7 +5,7 @@ docker pull postgres
 docker pull tomcat:jdk11
 :: run the containers
 docker run --name transferdb01 --network=caimantech -e POSTGRES_PASSWORD=postgres -d postgres
-docker run -itd --name=transferweb01 -p 9898:8080 --network=caimantech tomcat:jdk11
+docker run -itd --name=transferweb01 -p 9898:8080 --network=caimantech -e JASYPT_ENCRYPTOR_PASSWORD='V*GWw*7>.Y{f6^ja' tomcat:jdk11
 :: initialize the databes
 docker cp initdb.sql transferdb01:/opt
 timeout /t 3 /nobreak > nul
