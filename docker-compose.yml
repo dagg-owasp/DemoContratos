@@ -16,7 +16,7 @@ services:
         networks:
             - caimantech
     tomcat:
-        image: "tomcat:jdk8"
+        image: "tomcat:jdk11"
         ports:
             - "9898:8080"
         volumes:
