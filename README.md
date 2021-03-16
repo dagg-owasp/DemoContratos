@@ -17,3 +17,6 @@ http://127.0.0.1:9898/DemoContratos/login
 
 ## Password
 Password1
+
+## Check for SCA vulnerabilities (owasp dependencycheck maven plugin)
+mvn org.owasp:dependency-check-maven:check 
