@@ -13,7 +13,7 @@ CREATE TABLE usuario
 	User with id=1 gets admin role
 	The rest of the users get regular user 
 */
-INSERT INTO usuario(id, nombre, clave) VALUES (1, 'david', '$2y$12$F2HuSwRHPYUlFdIOjKAJBuOINQon78rCdBybIGwWsVLrHn7Ie.sJW'); 
-INSERT INTO usuario(id, nombre, clave) VALUES (2, 'jessica', '$2y$12$40ZcsxPAZTGGydOfm0JJs.Kp.P4jLBjd3ycmmyELa3gpXyzmPpsym');
-INSERT INTO usuario(id, nombre, clave) VALUES (3, 'juan', '$2y$12$CTvYGPu5roYXcmXN.UjjGutKnZpS/mprJNPjoypU9rqa1CUozpG4.');
+INSERT INTO usuario(id, nombre, clave) VALUES (1, 'david',   '$2y$12$JeTSpQvTUh..XOZFZ1Ol8O0Ux6uERfDIHJMhTeueB16I3o.Q6I6ZW'); 
+INSERT INTO usuario(id, nombre, clave) VALUES (2, 'jessica', '$2y$12$Y2m7Z4KGWbFZWl5yYjZsTO04I1hlCMzYE/KnB1i5sfX3OgW2DOe/W');
+INSERT INTO usuario(id, nombre, clave) VALUES (3, 'juan',    '$2y$12$aEGuWnnXbr39C6okvTX9pOZHywJ60Y/Aos2Esw1OOJsS/clDo5K.G');
 

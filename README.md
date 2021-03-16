@@ -14,3 +14,6 @@ docker cp target/DemoContratos.war transferweb01:/usr/local/tomcat/webapps
 ```
 ## Test
 http://127.0.0.1:9898/DemoContratos/login
+
+## Password
+Password1
