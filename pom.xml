@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.1.RELEASE</version>
+		<version>2.4.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>consulting.caimantech</groupId>
@@ -51,11 +51,37 @@
 		    <artifactId>encoder</artifactId>
 		    <version>1.2.2</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-css</artifactId>
+			<version>1.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.owasp.antisamy</groupId>
+			<artifactId>antisamy</artifactId>
+			<version>1.6.1</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.owasp.esapi</groupId>
 			<artifactId>esapi</artifactId>
-			<version>2.2.0.0</version>
+			<version>2.2.2.0</version>
+			<exclusions>
+				<exclusion>
+				  <groupId>log4j</groupId>
+				  <artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.xmlgraphics</groupId>
+					<artifactId>batik-css</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.owasp.antisamy</groupId>
+					<artifactId>antisamy</artifactId>
+				</exclusion>
+			  </exclusions>
 		</dependency>
 		
 		<dependency>
@@ -130,7 +156,11 @@
 				<artifactId>dependency-check-maven</artifactId>
 				<version>6.1.2</version>
 				<configuration>
-				  <failBuildOnCVSS>5</failBuildOnCVSS>
+					<suppressionFile>my-owasp-suppressions.xml</suppressionFile>	
+				  	<failBuildOnCVSS>5</failBuildOnCVSS>
+				  	<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled> 
+				  	<nugetconfAnalyzerEnabled>false</nugetconfAnalyzerEnabled> 
+				  	<nuspecAnalyzerEnabled>false</nuspecAnalyzerEnabled> 
 				</configuration>
 				<executions>
 				  <execution>
