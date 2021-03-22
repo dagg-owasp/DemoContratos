@@ -129,7 +129,8 @@
 			<artifactId>dependency-check-maven</artifactId>
 			<version>6.1.2</version>
 			<type>maven-plugin</type>
-		  </dependency>
+			<scope>test</scope>
+		</dependency>
 		
 	</dependencies>
 
