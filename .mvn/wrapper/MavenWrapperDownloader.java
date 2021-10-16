@@ -87,6 +87,7 @@ public class MavenWrapperDownloader {
             downloadFileFromURL(url, outputFile);
             System.out.println("Done");
             System.exit(0);
+        // deepcode ignore DontCatch: <please specify a reason of ignoring this>
         } catch (Throwable e) {
             System.out.println("- Error downloading");
             e.printStackTrace();
@@ -108,6 +109,7 @@ public class MavenWrapperDownloader {
         URL website = new URL(urlString);
         ReadableByteChannel rbc;
         rbc = Channels.newChannel(website.openStream());
+        // deepcode ignore DontCloseInTry: <please specify a reason of ignoring this>
         FileOutputStream fos = new FileOutputStream(destination);
         fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
         fos.close();
