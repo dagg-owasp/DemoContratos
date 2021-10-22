@@ -1,8 +1,12 @@
 # DemoContratos
 Java Spring Project to demo security related features
-## Create Containers (Initial execution only)
+## Create Containers windows (Initial execution only)
 ```sh
 ./initialize_containers.bat
+```
+## Create Containers Mac (Initial execution only)
+```sh
+./initialize_containers.sh
 ```
 ## Compile
 ```sh
@@ -19,4 +23,6 @@ http://127.0.0.1:9898/DemoContratos/login
 Password1
 
 ## Check for SCA vulnerabilities (owasp dependencycheck maven plugin)
+```sh
 mvn org.owasp:dependency-check-maven:check 
+```
