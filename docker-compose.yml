@@ -1,28 +1,26 @@
-version: '3'
+version: '4'
 services:
     transferdb01:
-        image: "democontratosdb"
-        ports:
-            - "5432:5432"
-        networks:
-            - caimantech
-    admin:
-        image: "dpage/pgadmin4"
-        ports:
-            - "5000:80"
+        image: "postgres"
         environment:
-            PGADMIN_DEFAULT_EMAIL: user@domain.com
-            PGADMIN_DEFAULT_PASSWORD: SuperSecret
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+        volumes:
+            - ./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql
         networks:
-            - caimantech
-    tomcat:
-        image: "tomcat:jdk11"
+            - caimantech 
+    transferweb01:
+        image: "adoptopenjdk/openjdk11"
         ports:
             - "9898:8080"
         environment:
             JASYPT_ENCRYPTOR_PASSWORD: V*GWw*7>.Y{f6^ja
+        command:
+            mkdir -p /opt/applications/
         volumes:
-            - ./todeploy/DemoContratos.war:/usr/local/tomcat/webapps/DemoContratos.war
+            - ./target/DemoContratos.jar:/opt/applications/DemoContratos.jar
+        entrypoint: 
+            java -jar /opt/applications/DemoContratos.jar
         networks:
             - caimantech
 networks:
